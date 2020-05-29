@@ -1,0 +1,50 @@
+﻿@model CheckboxPractice.ViewModels.PersonViewModel
+
+
+<form method="post" action="checkboxlist">
+    <div class="card">
+        <div class="card-header">
+            <div class="">
+                @Model.Name
+                <input type="hidden" asp-for="@Model.Name" />
+            </div>
+            <div class="">
+                @Model.Age
+                <input type="hidden" asp-for="@Model.Age" />
+            </div>
+        </div>
+
+        <div class="card-body">
+            @for (var i = 0; i < Model.Items.Count; i++)
+            {
+                 //サーバー側に値が渡るようにするためにはInput要素であることが必要 
+                <input type="hidden" asp-for="@Model.Items[i].Name" />
+                <input type="hidden" asp-for="@Model.Items[i].Price" />
+
+                 //チェックボックスに変換される 
+                <input asp-for="@Model.Items[i].IsSelected" />
+                <label asp-for="@Model.Items[i].IsSelected">
+                    @Model.Items[i].Name
+                </label>
+            }
+
+            @*@foreach(var item in Model.Items)
+            {
+                //サーバー側に値が渡るようにするためにはInput要素であることが必要
+                <input type="hidden" asp-for="@item.Name" />
+                <input type="hidden" asp-for="@item.Price" />
+
+                //チェックボックスに変換される 
+                <input asp-for="@item.IsSelected" />
+                <label asp-for="@item.IsSelected">
+                    @item.Name
+                </label>
+            }*@
+        </div>
+
+        <div class="card-footer">
+            <button type="submit">送信</button>
+        </div>
+    </div>
+</form>
+Here show checkbox list.
